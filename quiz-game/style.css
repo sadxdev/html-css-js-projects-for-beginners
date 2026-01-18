@@ -1,0 +1,67 @@
+//BASIC RESET
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eae8df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+.container {
+  background-color: white;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  box-shadow: 0 30px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  margin-bottom: 10px;
+  padding: 1rem;
+}
+
+#start-screen h1 {
+  color: #eb7711;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  padding: 1rem;
+}
+
+#start-screen p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  padding: 1rem;
+}
+
+button {
+  background-color: #ff7e22;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #b77f08;
+}
