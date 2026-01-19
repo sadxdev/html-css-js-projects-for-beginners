@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Game</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </header>
   <body>
     <div class="container">
       <div class="screen active" id="start-screen">
         <h1>Quiz Time!</h1>
         <p>Test your knowledge with these fun questions</p>
-        <button class="start-btn">Start Quiz</button>
+        <button id="start-btn">Start Quiz</button>
       </div>
       <div class="screen" id="quiz-screen">
         <div class="quiz-header">
@@ -27,6 +33,14 @@
         <div class="progress-bar">
           <div id="progress" class="progress"></div>
         </div>
+      </div>
+      <div class="screen" id="result-screen">
+        <h1>Quiz Results</h1>
+        <div class="result-info">
+          <p>You scored <span id="final-score">0</span> out of <span id="max-score">3</span></p>
+          <div id="result-message">Message</div>
+        </div>
+        <button id="restart-btn">Restart Quiz</button>
       </div>
     </div>
     <script src="script.js"></script>

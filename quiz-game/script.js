@@ -8,22 +8,27 @@ const scoreSpan = document.getElementById('score');
 const questionText = document.getElementById('question-text');
 const answersContainer = document.getElementById('answers-container');
 const progressBar = document.getElementById('progress');
+const resultScreen = document.getElementById('result-screen');
+const resultMessage = document.getElementById('result-message');
+const finalScoreSpan = document.getElementById('final-score');
+const maxScoreSpan = document.getElementById('max-score');
+const restartButton = document.getElementById('restart-btn');
 
 const quizQuestions = [
   {
     question: 'What is the capital of France?',
     answers: [
       { text: 'Paris', correct: true },
-      { text: 'Berlin', correct: false },
-      { text: 'New York', correct: false },
-      { text: 'Sydney', correct: false },
+      { text: 'Marseille', correct: false },
+      { text: 'Toulouse', correct: false },
+      { text: 'Strasbourg', correct: false },
     ],
   },
   {
     question: 'What is the capital of Australia?',
     answers: [
-      { text: 'Paris', correct: false },
-      { text: 'Berlin', correct: false },
+      { text: 'Perth', correct: false },
+      { text: 'Melbourne', correct: false },
       { text: 'Sydney', correct: false },
       { text: 'Canberra', correct: true },
     ],
@@ -31,10 +36,73 @@ const quizQuestions = [
   {
     question: 'What is the capital of England?',
     answers: [
-      { text: 'Paris', correct: false },
-      { text: 'Berlin', correct: false },
+      { text: 'Birmingham', correct: false },
+      { text: 'Manchester', correct: false },
       { text: 'London', correct: true },
-      { text: 'Canberra', correct: false },
+      { text: 'Liverpool', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of New Zealand?',
+    answers: [
+      { text: 'Wellington', correct: true },
+      { text: 'Auckland', correct: false },
+      { text: 'Christchurch', correct: false },
+      { text: 'Hamilton', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of India?',
+    answers: [
+      { text: 'Mumbai', correct: false },
+      { text: 'New Delhi', correct: true },
+      { text: 'Bangalore', correct: false },
+      { text: 'Chennai', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Canada?',
+    answers: [
+      { text: 'Toronto', correct: false },
+      { text: 'Vancouver', correct: false },
+      { text: 'Ottawa', correct: true },
+      { text: 'Montreal', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Japan?',
+    answers: [
+      { text: 'Kyoto', correct: false },
+      { text: 'Osaka', correct: false },
+      { text: 'Tokyo', correct: true },
+      { text: 'Nagoya', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Germany?',
+    answers: [
+      { text: 'Munich', correct: false },
+      { text: 'Frankfurt', correct: false },
+      { text: 'Berlin', correct: true },
+      { text: 'Hamburg', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Italy?',
+    answers: [
+      { text: 'Milan', correct: false },
+      { text: 'Venice', correct: false },
+      { text: 'Rome', correct: true },
+      { text: 'Florence', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Brazil?',
+    answers: [
+      { text: 'Rio de Janeiro', correct: false },
+      { text: 'São Paulo', correct: false },
+      { text: 'Brasília', correct: true },
+      { text: 'Salvador', correct: false },
     ],
   },
 ];
@@ -47,7 +115,8 @@ let answersDisabled = false;
 totalQuestionsSpan.textContent = quizQuestions.length;
 
 //event-listener
-startScreen.addEventListener('click', startQuiz);
+startButton.addEventListener('click', startQuiz);
+restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
   currentQuestionIndex = 0;
@@ -110,6 +179,34 @@ function selectAnswer(event) {
     if (currentQuestionIndex < quizQuestions.length) {
       showQuestion();
     } else {
+      showResults();
     }
   }, 1000);
+}
+
+function showResults() {
+  finalScoreSpan.textContent = score;
+  maxScoreSpan.textContent = quizQuestions.length;
+
+  quizScreen.classList.remove('active');
+  resultScreen.classList.add('active');
+
+  const percent = (score / quizQuestions.length) * 100;
+  if (percent === 100) {
+    resultMessage.textContent = 'Excellent! Perfect score.';
+  } else if (percent >= 80) {
+    resultMessage.textContent = 'Very good performance.';
+  } else if (percent >= 60) {
+    resultMessage.textContent = 'Fair attempt. Improvement needed.';
+  } else if (percent >= 40) {
+    resultMessage.textContent = 'Needs more practice.';
+  } else {
+    resultMessage.textContent = 'Keep trying.';
+  }
+}
+
+function restartQuiz() {
+  resultScreen.classList.remove('active');
+
+  startQuiz();
 }
